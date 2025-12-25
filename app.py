@@ -82,37 +82,37 @@ if page == "Dashboard Prediksi":
         with col2:
             st.subheader("🎯 Hasil Prediksi")
             if st.button("Jalankan Prediksi"):
-                with st.spinner('Menganalisis fitur wajah...'):
-                    # Load model yang dipilih
-                    cnn, mnet, res = load_all_models()
-                    model_dict = {"CNN_Base": cnn, "MobileNetV2": mnet, "ResNet50": res}
-                    model = model_dict[selected_model_name]
+                with st.spinner(f'Memuat model {selected_model_name}...'):
+                    # PERBAIKAN DI SINI: Memanggil fungsi yang benar
+                    model = load_single_model(selected_model_name)
 
-                    # Preprocessing
-                    img = image.resize((128, 128))
-                    img_array = tf.keras.preprocessing.image.img_to_array(img)
-                    img_array = np.expand_dims(img_array, axis=0)
-                    img_array = img_array / 255.0
+                if model is not None:
+                    with st.spinner('Menganalisis fitur wajah...'):
+                        # Preprocessing
+                        img = image.convert('RGB') # Pastikan format RGB
+                        img = img.resize((128, 128))
+                        img_array = tf.keras.preprocessing.image.img_to_array(img)
+                        img_array = np.expand_dims(img_array, axis=0)
+                        img_array = img_array / 255.0
 
-                    # Prediksi
-                    predictions = model.predict(img_array)
-                    labels = ['Caucasoid', 'Negroid', 'Mongoloid']
-                    result_idx = np.argmax(predictions)
-                    confidence = np.max(predictions) * 100
+                        # Prediksi
+                        predictions = model.predict(img_array)
+                        labels = ['Caucasoid', 'Negroid', 'Mongoloid']
+                        result_idx = np.argmax(predictions)
+                        confidence = np.max(predictions) * 100
 
-                    # Tampilan Output
-                    st.markdown(f"""
-                    <div class="result-box">
-                        <h2 style='text-align: center; color: #007bff;'>{labels[result_idx]}</h2>
-                        <p style='text-align: center;'>Confidence Level: <b>{confidence:.2f}%</b></p>
-                    </div>
-                    """, unsafe_allow_html=True)
+                        # Tampilan Output
+                        st.markdown(f"""
+                        <div class="result-box">
+                            <h2 style='text-align: center; color: #007bff;'>{labels[result_idx]}</h2>
+                            <p style='text-align: center;'>Confidence Level: <b>{confidence:.2f}%</b></p>
+                        </div>
+                        """, unsafe_allow_html=True)
 
-                    # Bar Chart Probabilitas
-                    fig = go.Figure([go.Bar(x=labels, y=predictions[0]*100, marker_color='#007bff')])
-                    fig.update_layout(title="Probabilitas Per Kelas (%)", height=300)
-                    st.plotly_chart(fig, use_container_width=True)
-
+                        # Bar Chart Probabilitas
+                        fig = go.Figure([go.Bar(x=labels, y=predictions[0]*100, marker_color='#007bff')])
+                        fig.update_layout(title="Probabilitas Per Kelas (%)", height=300)
+                        st.plotly_chart(fig, use_container_width=True)
 # --- HALAMAN 2: ANALISIS PERFORMA ---
 else:
     st.title("📊 Analisis Performa Model")
