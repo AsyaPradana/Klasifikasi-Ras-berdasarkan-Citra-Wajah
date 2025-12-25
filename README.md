@@ -176,6 +176,10 @@ Pengguna dapat melihat Analisis dari ketiga model yang dipakai
 
 Setelah memasukkan gambar, pengguna dapat melihat hasil prediksi dengan mengklik button Jalankan Prediksi. Tampilan diatas adalah contoh yang menampilkan hasil prediksi beserta probabilitas per kelas.
 
+***Link Live App***
+
+[Ras](https://klasifikasi-ras-berdasarkan-citra-wajah-8f797jdiuorojt9fa936lj.streamlit.app/)
+
 # 🤝 Referensi
 
 Dataset: [UTKFace on Kaggle](https://www.kaggle.com/datasets/jangedoo/utkface-new)
