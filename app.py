@@ -36,12 +36,15 @@ st.markdown("""
 
 # --- FUNGSI LOAD MODEL ---
 @st.cache_resource
-def load_all_models():
-    # Menambahkan path folder 'models/' jika file berada di dalam subfolder
-    cnn = tf.keras.models.load_model('models/CNN_Base.h5')
-    mnet = tf.keras.models.load_model('models/MobileNetV2.h5')
-    res = tf.keras.models.load_model('models/ResNet50.h5')
-    return cnn, mnet, res
+def load_single_model(model_name):
+    # Menunjuk ke folder 'models/' sesuai struktur folder Anda
+    model_file = f"models/{model_name}.h5" 
+    
+    if os.path.exists(model_file):
+        return tf.keras.models.load_model(model_file)
+    else:
+        st.error(f"File {model_file} tidak ditemukan! Pastikan file ada di folder 'models'")
+        return None
 
 # --- SIDEBAR ---
 with st.sidebar:
