@@ -15,6 +15,8 @@ Dataset yang digunakan adalah **UTKFace Large Scale Dataset**, yang terdiri dari
 ***Link Dataset***: [UTKFace on Kaggle](https://www.kaggle.com/datasets/jangedoo/utkface-new)
 
 ## 2. Struktur Data & Labeling
+Dataset yang digunakan terdiri dari lebih dari 23.000 citra wajah berwarna (RGB) dengan anotasi umur, jenis kelamin, dan ras. Setiap citra telah melalui proses alignment dan cropping pada area wajah. Penelitian ini hanya menggunakan tiga ras utama, yaitu Caucasoid, Negroid, dan Mongoloid. Proses seleksi data dilakukan dengan memfilter citra berdasarkan rentang umur 20–50 tahun dan ras yang relevan, sehingga diperoleh sekitar 6.000 citra wajah. Dataset tersebut kemudian dibagi menjadi 80% data latih dan 20% data uji.
+
 Label ras diekstraksi dari nama file dengan format: `[age]_[gender]_[race]_[date].jpg`.
 Contoh: `25_0_2_20170116174525125.jpg`
 * **Race Index 2:**
