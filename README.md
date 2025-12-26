@@ -26,9 +26,9 @@ Contoh: `25_0_2_20170116174525125.jpg`
 
 ## 3. Tahap Preprocessing
 Langkah-langkah berikut dilakukan untuk memastikan data siap latih dan seimbang:
-* **Filtering Ras:** Hanya mengambil data label `0` (Caucasoid), `1` (Negroid), dan `2` (Mongoloid) sesuai fokus penelitian.
+* **Filtering Ras:** Hanya mengambil data label `0` (Caucasoid), `1` (Negroid), dan `2` (Mongoloid).
 * **Data Balancing:** Membatasi jumlah sampel maksimal **2.000 citra per kategori** untuk mencegah model bias terhadap ras mayoritas.
-* **Resizing:** Menyeragamkan ukuran citra menjadi $128 \times 128$ piksel.
+* **Resizing:** Menyeragamkan ukuran citra menjadi 128 x 128 piksel.
 * **Normalisasi:** Skalasi nilai piksel menjadi rentang [0, 1].
 * **Augmentasi Data:** Menggunakan *horizontal flip* untuk meningkatkan generalisasi model.
 
